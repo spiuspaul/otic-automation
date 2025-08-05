@@ -1,11 +1,14 @@
 from langchain_google_genai import ChatGoogleGenerativeAI
 from dotenv import load_dotenv
+import os
 load_dotenv()
 
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 
-llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0.5)
+google_api_key = os.getenv("GEMINI_API_KEY")
+
+llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0.5, api_key=google_api_key)
 
 template = PromptTemplate.from_template(
     """Rewrite the following resume snippet to be more professional, clear, concise, and impactful.
